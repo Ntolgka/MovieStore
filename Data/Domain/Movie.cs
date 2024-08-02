@@ -1,9 +1,11 @@
-﻿using MovieStore.Base;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using MovieStore.Base;
 
 namespace MovieStore.Data.Domain;
 
 public class Movie : BaseEntity
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MovieId { get; set; }
     public string Title { get; set; }
     public int Year { get; set; }

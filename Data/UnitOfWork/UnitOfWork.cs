@@ -13,6 +13,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public IGenericRepository<Director> DirectorRepository { get; }
     public IGenericRepository<Customer> CustomerRepository { get; }
     public IGenericRepository<Order> OrderRepository { get; }
+    public IGenericRepository<Genre> GenreRepository { get; }
 
     public UnitOfWork(AppDbContext dbContext)
     {
@@ -30,7 +31,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         dbContext?.Dispose();
     }
 
-    public async Task Complete()
+    public async Task CompleteAsync()   
     {
         await dbContext.SaveChangesAsync();
     }

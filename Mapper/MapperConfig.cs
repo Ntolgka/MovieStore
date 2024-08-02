@@ -3,6 +3,7 @@ using MovieStore.Data.Domain;
 using MovieStore.Schema.Actor;
 using MovieStore.Schema.Customer;
 using MovieStore.Schema.Director;
+using MovieStore.Schema.Genre;
 using MovieStore.Schema.Movie;
 using MovieStore.Schema.Order;
 
@@ -13,10 +14,21 @@ public class MapperConfig : Profile
     public MapperConfig()
     {
         // Customer
-        CreateMap<Customer, CustomerDto>();
-        CreateMap<CreateCustomerDto, Customer>();
-        CreateMap<UpdateCustomerDto, Customer>();
+        CreateMap<Customer, CustomerDto>()
+            .ForMember(dest => dest.FavoriteGenreIds, 
+                opt => opt.MapFrom(src => src.FavoriteGenres != null ? src.FavoriteGenres.Select(g => g.Id).ToList() : new List<int>()));
 
+        CreateMap<CreateCustomerDto, Customer>()
+            .ForMember(dest => dest.FavoriteGenres, 
+                opt => opt.MapFrom(src => src.FavoriteGenreIds != null ? src.FavoriteGenreIds.Select(id => new Genre { Id = id }).ToList() : new List<Genre>()));
+        
+        CreateMap<UpdateCustomerDto, Customer>()
+            .ForMember(dest => dest.FavoriteGenres, 
+                opt => opt.MapFrom(src => src.FavoriteGenreIds != null ? src.FavoriteGenreIds.Select(id => new Genre { Id = id }).ToList() : new List<Genre>()));
+        
+        // Genre
+        CreateMap<Genre, GenreDto>();
+        
         // Actor
         CreateMap<Actor, ActorDto>();
         CreateMap<CreateActorDto, Actor>();

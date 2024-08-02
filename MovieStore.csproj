@@ -10,6 +10,10 @@
 
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
         <PackageReference Include="Serilog" Version="4.0.1" />
         <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
@@ -20,8 +24,6 @@
       <Folder Include="Logs\" />
       <Folder Include="Operations\ActorOperations\Commands\" />
       <Folder Include="Operations\ActorOperations\Queries\" />
-      <Folder Include="Operations\CustomerOperations\Commands\" />
-      <Folder Include="Operations\CustomerOperations\Queries\" />
       <Folder Include="Operations\DirectorOperations\Commands\" />
       <Folder Include="Operations\DirectorOperations\Queries\" />
       <Folder Include="Operations\MovieOperations\Commands\" />
