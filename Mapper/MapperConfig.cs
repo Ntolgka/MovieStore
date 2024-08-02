@@ -42,9 +42,17 @@ public class MapperConfig : Profile
         CreateMap<UpdateActorDto, Actor>();
 
         // Director
-        CreateMap<Director, DirectorDto>();
-        CreateMap<CreateDirectorDto, Director>();
-        CreateMap<UpdateDirectorDto, Director>();
+        CreateMap<Director, DirectorDto>()
+            .ForMember(dest => dest.DirectorId, opt => opt.MapFrom(src => src.DirectorId))
+            .ForMember(dest => dest.Movies, opt => opt.MapFrom(src => src.Movies));
+
+        CreateMap<CreateDirectorDto, Director>()
+            .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+            .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
+
+        CreateMap<UpdateDirectorDto, Director>()
+            .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+            .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
 
         // Movie
         CreateMap<Movie, MovieDto>()

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MovieStore.Data.Domain;
 using MovieStore.Data.UnitOfWork;
-using MovieStore.Operations.CustomerOperations.Commands;
 using MovieStore.Schema.Customer;
 
 namespace MovieStore.Controllers;

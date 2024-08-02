@@ -25,8 +25,6 @@
       <Folder Include="Migrations\" />
       <Folder Include="Operations\ActorOperations\Commands\" />
       <Folder Include="Operations\ActorOperations\Queries\" />
-      <Folder Include="Operations\DirectorOperations\Commands\" />
-      <Folder Include="Operations\DirectorOperations\Queries\" />
       <Folder Include="Operations\MovieOperations\Commands\" />
       <Folder Include="Operations\MovieOperations\Queries\" />
       <Folder Include="Operations\OrderOperations\Commands\" />
