@@ -19,15 +19,22 @@ public class MapperConfig : Profile
                 opt => opt.MapFrom(src => src.FavoriteGenres != null ? src.FavoriteGenres.Select(g => g.Id).ToList() : new List<int>()));
 
         CreateMap<CreateCustomerDto, Customer>()
-            .ForMember(dest => dest.FavoriteGenres, 
-                opt => opt.MapFrom(src => src.FavoriteGenreIds != null ? src.FavoriteGenreIds.Select(id => new Genre { Id = id }).ToList() : new List<Genre>()));
-        
+            .ForMember(dest => dest.FavoriteGenres,
+                opt => opt.MapFrom(src => src.FavoriteGenreIds != null 
+                    ? src.FavoriteGenreIds.Select(id => new Genre { Id = id }).ToList() 
+                    : new List<Genre>()));
+
         CreateMap<UpdateCustomerDto, Customer>()
             .ForMember(dest => dest.FavoriteGenres, 
                 opt => opt.MapFrom(src => src.FavoriteGenreIds != null ? src.FavoriteGenreIds.Select(id => new Genre { Id = id }).ToList() : new List<Genre>()));
         
         // Genre
-        CreateMap<Genre, GenreDto>();
+        CreateMap<CreateGenreDto, Genre>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+        
+        CreateMap<Genre, GenreDto>()
+            .ForMember(dest => dest.GenreId, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
         
         // Actor
         CreateMap<Actor, ActorDto>();

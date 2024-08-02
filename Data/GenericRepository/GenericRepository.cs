@@ -19,7 +19,7 @@ internal class GenericRepository<TEntity> : IGenericRepository<TEntity> where TE
             await dbContext.SaveChangesAsync();
         }   
 
-        public async Task<TEntity?> GetById(int id, params string[] includes)
+        public async Task<TEntity?> GetByIdAsync(int id, params string[] includes)
         {
             var query = dbContext.Set<TEntity>().AsQueryable();
             query = includes.Aggregate(query, (current, include) => current.Include(include));
@@ -52,8 +52,8 @@ internal class GenericRepository<TEntity> : IGenericRepository<TEntity> where TE
                 dbContext.Set<TEntity>().Remove(entity);
             }
         }
-
-        public async Task<List<TEntity>> Where(Expression<Func<TEntity, bool>> expression, params string[] includes)
+    
+        public async Task<List<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> expression, params string[] includes)
         {
             var query = dbContext.Set<TEntity>().Where(expression).AsQueryable();
             query = includes.Aggregate(query, (current, include) => current.Include(include));

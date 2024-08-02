@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MovieStore.Data.Domain;
 using MovieStore.Data.UnitOfWork;
+using MovieStore.Operations.CustomerOperations.Commands;
 using MovieStore.Schema.Customer;
 
 namespace MovieStore.Controllers;
@@ -32,7 +33,7 @@ public class CustomerController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<CustomerDto>> GetCustomerDetail(int id)
     {
-        var customer = await _unitOfWork.CustomerRepository.GetById(id, "FavoriteGenres");
+        var customer = await _unitOfWork.CustomerRepository.GetByIdAsync(id, "FavoriteGenres");
 
         if (customer == null)
         {
@@ -56,11 +57,20 @@ public class CustomerController : ControllerBase
             return Conflict("A customer with this identity number already exists.");
         }
 
+        var genres = await _unitOfWork.GenreRepository.WhereAsync(g => createCustomerDto.FavoriteGenreIds.Contains(g.Id));
+    
+        if (genres.Count != createCustomerDto.FavoriteGenreIds.Count)
+        {
+            return BadRequest("One or more favorite genres do not exist.");
+        }
+        
         var customer = _mapper.Map<Customer>(createCustomerDto);
+        customer.FavoriteGenres = genres;
+
         await _unitOfWork.CustomerRepository.InsertAsync(customer);
         await _unitOfWork.CompleteAsync();
 
-        return CreatedAtAction(nameof(GetCustomerDetail), new { id = customer.CustomerId }, createCustomerDto);
+        return Ok(createCustomerDto);
     }
 
     // PUT: api/customer/{id}

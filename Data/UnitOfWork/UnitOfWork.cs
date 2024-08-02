@@ -24,6 +24,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         DirectorRepository = new GenericRepository<Director>(this.dbContext);
         CustomerRepository = new GenericRepository<Customer>(this.dbContext);
         OrderRepository = new GenericRepository<Order>(this.dbContext);
+        GenreRepository = new GenericRepository<Genre>(this.dbContext);
     }
 
     public void Dispose()

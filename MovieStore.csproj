@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <Folder Include="Logs\" />
+      <Folder Include="Migrations\" />
       <Folder Include="Operations\ActorOperations\Commands\" />
       <Folder Include="Operations\ActorOperations\Queries\" />
       <Folder Include="Operations\DirectorOperations\Commands\" />

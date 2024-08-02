@@ -15,8 +15,7 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.HasMany(x => x.Orders)
             .WithOne(x => x.Customer)
             .HasForeignKey(x => x.CustomerId);
-        
-        // Many-to-Many relationship with Genre
+
         builder.HasMany(c => c.FavoriteGenres)
             .WithMany(g => g.Customers)
             .UsingEntity<Dictionary<string, object>>(

@@ -29,7 +29,7 @@ public class UpdateCustomerCommandHandler
 
         if (Model.FavoriteGenreIds != null && Model.FavoriteGenreIds.Any())
         {
-            var genres = await _unitOfWork.GenreRepository.Where(g => Model.FavoriteGenreIds.Contains(g.Id));
+            var genres = await _unitOfWork.GenreRepository.WhereAsync(g => Model.FavoriteGenreIds.Contains(g.Id));
             existingCustomer.FavoriteGenres = genres.ToList();
         }
         else

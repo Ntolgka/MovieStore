@@ -10,7 +10,6 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
     {
         builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
 
-        // Many-to-Many relationship with Customer
         builder.HasMany(g => g.Customers)
             .WithMany(c => c.FavoriteGenres)
             .UsingEntity<Dictionary<string, object>>(

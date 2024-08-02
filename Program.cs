@@ -26,7 +26,11 @@ builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 // DB Connection
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSqlConnection")));
+    options
+        .UseNpgsql(builder.Configuration
+            .GetConnectionString("PostgresSqlConnection"))
+        .EnableSensitiveDataLogging()
+    );
 
 // Generic Repository
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

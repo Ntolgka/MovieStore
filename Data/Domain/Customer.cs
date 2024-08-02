@@ -10,6 +10,6 @@ public class Customer : BaseEntity
     public string IdentityNumber { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public ICollection<Order> Orders { get; set; }
-    public ICollection<Genre> FavoriteGenres { get; set; } 
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
+    public ICollection<Genre> FavoriteGenres { get; set; } = new List<Genre>();
 }

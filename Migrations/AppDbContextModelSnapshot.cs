@@ -49,7 +49,7 @@ namespace MovieStore.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("CustomerFavoriteGenre", (string)null);
+                    b.ToTable("CustomerFavoriteGenre");
                 });
 
             modelBuilder.Entity("DirectorMovie", b =>
@@ -99,7 +99,7 @@ namespace MovieStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Actors", (string)null);
+                    b.ToTable("Actors");
                 });
 
             modelBuilder.Entity("MovieStore.Data.Domain.Customer", b =>
@@ -139,7 +139,7 @@ namespace MovieStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("MovieStore.Data.Domain.Director", b =>
@@ -174,7 +174,7 @@ namespace MovieStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Directors", (string)null);
+                    b.ToTable("Directors");
                 });
 
             modelBuilder.Entity("MovieStore.Data.Domain.Genre", b =>
@@ -198,7 +198,7 @@ namespace MovieStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("MovieStore.Data.Domain.Movie", b =>
@@ -240,7 +240,7 @@ namespace MovieStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies", (string)null);
+                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("MovieStore.Data.Domain.Order", b =>
@@ -282,7 +282,7 @@ namespace MovieStore.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("ActorMovie", b =>
